@@ -1,5 +1,7 @@
 # one-mui
-one一个   mui版未完结，带完结求帮助
+one一个  
+此版本是仿照3.5版本而做，但是中间过程one升级到了4.0，电影版快3.5版本的基本报废，故换作类4.0版本界面（未美化）
+mui版未完结，带完结求帮助
 往期目录未实现，咱不得而知该如何实现为好！求帮助
 ![image](https://github.com/yogu2017/one-mui/raw/master/screenshot/1.png)
 ![image](https://github.com/yogu2017/one-mui/raw/master/screenshot/2.png)
