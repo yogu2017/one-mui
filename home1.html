@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <script src="js/time.js" type="text/javascript" charset="utf-8"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/comment.css"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	  <a class=" mui-icon mui-icon-search mui-pull-left">
+	  	<!--搜索-->
+	  </a>
+	  <a class="mui-icon mui-icon-contact mui-pull-right">
+	    <!--个人中心-->
+	  </a>
+	  <h1 class="mui-title">ONE</h1>
+	</header>
+	<div class="mui-content">
+		<div style="padding: 10px;background-color: white;border: 1PX solid #DDDDDD;">	
+		    	<div id="head"></div>
+		    	<p style="font-size: 13px;text-align: right;"><script>getCurrentDate()</script></p>
+		    </div>
+		    <div style="margin-top: 10px;margin-left: 1rem;">
+		    	<div style="float: left;">
+		    		<span class="iconfont icon-bianji"></span>
+		    		<span>小记</span>
+		    	</div>
+		    	<!--心-->
+		    	<div style="float: left;position: absolute;right: 20%;">
+		    		<span class="iconfont icon-xihuan"></span>
+		    		<span id="praisenum"></span>
+		    	</div>
+		    	<!--转发-->
+		    	<div style="float: right;margin-right: 1rem;">
+		    		<span class="iconfont icon-iconfontzhuanfa"></span>
+		    </div>
+		</div>
+		
+	</div>
+	<script src="js/castapp.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		ca.init();
+		var content =ca.id('content');
+		var praisenum = ca.id('praisenum');
+		ca.get({
+				url:'http://v3.wufazhuce.com:8000/api/hp/idlist/0',
+				data:{
+				    state:'index'
+				},
+				succFn:function(data){
+				   var json = JSON.parse(data);
+//				   alert(json.data[0]);
+				   		castapp.get({
+								url:'http://v3.wufazhuce.com:8000/api/hp/detail/'+json.data[0],
+								data:{
+								    state:'index'
+								},
+								succFn:function(data){
+								    var data = JSON.parse(data);
+//								    alert(data.data.hp_content) 
+//								    content.innerText = data.data.hp_content; 
+									var head = ca.id('head');
+									var tpl = '<img src="'+data.data.hp_img_url+'" width=100% display:block; />'
+									    	  +'<span style="float: left;color: gray;font-size: 13px;">'+data.data.hp_title+'</span>'
+									    	  +'<span style="float: right;color: gray;font-size: 13px;"><span>'+data.data.hp_author+'</span>'
+									    	  +'</span>'
+									    	  +'<p style="clear: both;padding: 15px 0 0 0;color: #353535;font-size: 14px;font-weight: bold;" id="content">'
+									    	  +data.data.hp_content+'</p>';
+//									    	  +'<p style="font-size: 13px;text-align: right;">'+data.data.hp_makettime.substring(0,11)+'</p>';
+									head.innerHTML = tpl;
+									praisenum.innerHTML = data.data.praisenum;
+								}}
+							);
+				}}
+			);
+	</script>
+</body>
+
+</html>

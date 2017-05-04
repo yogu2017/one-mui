@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<script src="js/mui.min.js"></script>
+		<link rel="stylesheet" href="css/demo_videoPlaySimple.css" />
+		<style type="text/css">
+			body{
+				background-color: black;
+			}
+			.mui-bar-nav{
+				    background-color: black;
+   					box-shadow: 0 1px 6px #080808;
+   					color: white;
+			}
+			.mui-icon-close:before{
+				 color: white;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-close mui-pull-right"></a>
+		</header>
+		<div class="mui-content">
+		    <div id="videoContainer">
+				<video webkit-playsinline id="videoMedia" controls="controls" preload autoplay="autoplay">
+					<!--<source src='http://music.wufazhuce.com/loEKuacKAXaGgCCTsbur7Zrn3p5u' type="video/mp4">-->
+					</source>
+				</video>
+			</div>
+		</div>
+	</body>
+	<script src="js/castapp.js" type="text/javascript" charset="utf-8"></script>
+	<script src="html5plus://ready"></script>
+	<script type="text/javascript">
+		ca.init();
+		var self = plus.webview.currentWebview();
+		var play = ca.id('videoMedia');
+//		alert(self.id);
+		ca.get({
+			url:'http://v3.wufazhuce.com:8000/api/movie/detail/'+self.id,
+			succFn:function(data){
+//				alert(data)
+				var json = JSON.parse(data);
+				play.innerHTML = '<source src='+json.data.video+' type="video/mp4" ></source></video>'
+			}
+			
+		})
+	</script>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/comment.css"/>
+</head>
+<body>
+	<nav class="mui-bar mui-bar-tab">
+        <a id="defaultTab" class="mui-tab-item mui-active" href="home.html">
+            <span class="mui-icon iconfont icon-home"></span>
+            <span class="mui-tab-label">首页</span>
+        </a>
+        <a class="mui-tab-item" href="reader.html">
+            <span class="mui-icon iconfont icon-reading"></span>
+            <span class="mui-tab-label">阅读</span>
+        </a>
+        <a class="mui-tab-item" href="music.html">
+            <span class="mui-icon iconfont icon-music"></span>
+            <span class="mui-tab-label">音乐</span>
+        </a>
+        <a class="mui-tab-item" href="movie.html">
+            <span class="mui-icon iconfont icon-movie"></span>
+            <span class="mui-tab-label">电影</span>
+        </a>
+</nav>
+<!--<script src="js/castapp.js" type="text/javascript" charset="utf-8"></script>-->
+<script type="text/javascript">
+	//创建子页面
+	mui.init();
+	var subpages = ['home.html','reader.html','music.html','movie.html'];
+	var subpage_style = {
+	    top: '0px',
+	    bottom: '50px',
+	    scrollIndicator: "none" ,// 当你的界面的内容足够多的时候，会出现滚动条，这个是隐藏滚动条
+	};
+	              
+	//创建子页面，首个选项卡页面显示，其它均隐藏；
+	mui.plusReady(function(){
+	    //获得当前页面
+	    var self = plus.webview.currentWebview();
+	    //循环创建子页面
+	    for(var i=0;i<subpages.length;i++){
+	        var sub = plus.webview.create(subpages[i],subpages[i],subpage_style);
+	        var sub = plus.webview.create(
+	            'home.html',
+	            'home.html',{
+	    top: '0px',
+	    bottom: '50px',
+	    scrollIndicator: "none" ,// 当你的界面的内容足够多的时候，会出现滚动条，这个是隐藏滚动条
+	});
+	        if(i>0){
+	            sub.hide();
+	        }
+	        self.append(sub);
+	    }
+	});
+	              
+	              
+	//当前激活选项卡
+	var activeTab = subpages[0];
+	              
+	//选项卡点击事件
+	mui('.mui-bar-tab').on('tap', 'a', function(e) {
+	    var targetTab = this.getAttribute('href');
+	    if (targetTab == activeTab) {
+	            return;
+	    }
+	    //显示目标选项卡
+	    plus.webview.show(targetTab);
+	    //隐藏当前;
+	    plus.webview.hide(activeTab);
+	    //更改当前活跃的选项卡
+	    activeTab = targetTab;
+	});
+	              
+	//自定义事件，模拟点击“首页选项卡”
+	document.addEventListener('gohome',function () {
+	    var defaultTab = document.getElementById("defaultTab");
+	    //模拟首页点击
+	    mui.trigger(defaultTab,'tap');
+	    //切换选项卡高亮
+	    var current = document.querySelector(".mui-bar-tab>.mui-tab-item.mui-active");
+	    if(defaultTab!==current){
+	        current.classList.remove('mui-active');
+	        defaultTab.classList.add('mui-active');
+	    }
+	});
+</script>
+</body>
+</html>

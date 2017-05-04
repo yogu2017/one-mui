@@ -1,0 +1,178 @@
+ul{
+	list-style: none;
+	font-size: 10px;
+	line-height: 2rem;
+	float: left;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	display: block;
+}
+li{
+	float: left;
+	margin-left: 0.5rem;
+}
+li:last-child{
+	/*float: right;*/
+}
+img{
+	max-width: 100%;
+}
+#anniu{
+	width:40px;
+	right:10px;
+	top: 30px;
+	position: absolute;
+}
+.userpic{
+	 width: 40px;
+	 border-radius: 50%;
+	 margin-top: 23px;
+}
+.musicname{
+	float: right;
+	margin-top: 35px;
+	margin-left: 10px;
+	line-height: 0;
+}
+.musictitle{
+	font-size:16px;
+	color:black;
+	clear:right;
+	position: absolute;
+	margin-top: -8px;
+	margin-left: 10px;
+}
+.musicinfo{
+	line-height: 1;
+	width: 180px;
+	white-space:nowrap; 
+	font-size: 10px;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	margin-top: 15px;
+}
+#music{
+	float: left;
+}
+.musichead{
+	height: 125px;
+	margin:10px;
+	background-color: white;
+	margin-top: -20px;
+	border: 1px solid gainsboro;
+	padding: 5px;
+	z-index:1;
+	position: relative
+}
+.commentpic{
+	float: left;
+	width: 1.6rem;
+	border-radius: 50%;
+	margin:0.1rem 0;
+	height: auto;
+}
+#contact{
+	display: block;
+	padding: 5px;
+	margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-shadow: none;
+    font-size: 15px;
+}
+#bianji{
+	font-size: 12px;
+	color: gray;
+}
+.musicstory{
+	background-image: url(../img/music_story_selected.png);
+	width: 2rem;
+}
+.musiclyric{}
+.musicinf{}
+.mui-content{
+	margin: 0px;
+}
+.commentlist{
+	width: 100%;
+	float: right;
+	color:#808080;
+	font-size: 12px;
+	margin: 0.2rem;
+}
+.huifu{
+	line-height: 1.5rem;
+	padding: 5px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	display:-webkit-box;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:2;
+	border: 1px solid #cec9c9;
+	margin: 0 0 0 2rem;
+}
+.mui-bar-tab .mui-tab-item.mui-active {
+    color: #86bef8;
+}
+@font-face {
+    font-family: MuiiconSpread;
+    font-weight: normal;
+    font-style: normal;
+    src:  url('../fonts/iconfont.ttf') format('truetype'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: MuiiconSpread;
+    font-size: 1.5rem;
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    display: inline-block;
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+.icon-zan:before { content: "\e645"; color: #86bef8;}
+.mui-slider .mui-slider-group .mui-slider-item img {
+    width: 100%;
+    margin: 0;
+    height: 200px;
+    object-fit: cover;
+}
+.text-title {
+    color: #524a4a;
+    font-size: 20px;
+    margin: 94px 15px 0 15px;
+    font-weight: 400;
+    line-height: 1.3;
+}
+.icon-bofang:before { 
+	content: "\e630"; 
+    position: absolute;
+    font-size: 3rem;
+    top: 50%;
+    left: 50%;
+    margin-top: -1.5rem;
+    margin-left: -1.5rem;
+    color: wheat;
+}
+.icon-bofang1:before { content: "\e622"; }
+.icon-zanting:before { content: "\e96b"; }
+.icon-weibiaoti3:before { content: "\e602"; }
+.icon-i:before { content: "\e609"; }
+.icon-danciben:before { content: "\e621";}
+.icon-yuedu:before { content: "\e60d";color: #86bef8; }
+.icon-bianji:before { content: "\e606"; color: #86bef8;}
+.icon-xihuan:before { content: "\e61a"; color: #ff7f6c;}
+.icon-shoucang:before { content: "\e613";color: #86bef8;}
+.icon-iconfontzhuanfa:before { content: "\e617";color: #86bef8; }
+.icon-jiedian:before { content: "\e62d"; }
+.icon-home:before { content: "\e602"; }
+
+.icon-reading:before { content: "\e603"; }
+
+.icon-movie:before { content: "\e604"; }
+
+.icon-music:before { content: "\e605"; }

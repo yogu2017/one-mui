@@ -1,0 +1,38 @@
+.mui-bar-tab .mui-tab-item.mui-active {
+    color: #86bef8;
+}
+@font-face {
+    font-family: MuiiconSpread;
+    font-weight: normal;
+    font-style: normal;
+    src:  url('../fonts/iconfont.ttf') format('truetype'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: MuiiconSpread;
+    font-size: 1.5rem;
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    display: inline-block;
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+}
+.icon-bofang1:before { content: "\e622"; }
+.icon-zanting:before { content: "\e96b"; }
+.icon-weibiaoti3:before { content: "\e602"; }
+.icon-i:before { content: "\e609"; }
+.icon-danciben:before { content: "\e621";}
+.icon-yuedu:before { content: "\e60d";color: #86bef8; }
+.icon-bianji:before { content: "\e606"; color: #86bef8;}
+.icon-xihuan:before { content: "\e61a"; color: #ff7f6c;}
+.icon-shoucang:before { content: "\e613";color: #86bef8;}
+.icon-iconfontzhuanfa:before { content: "\e617";color: #86bef8; }
+.icon-jiedian:before { content: "\e62d"; }
+.icon-home:before { content: "\e602"; }
+
+.icon-reading:before { content: "\e603"; }
+
+.icon-movie:before { content: "\e604"; }
+
+.icon-music:before { content: "\e605"; }
