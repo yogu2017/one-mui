@@ -1,7 +1,7 @@
 {
 	"@platforms": ["android", "iPhone", "iPad"],
 	"id": "H57775C64",/*应用的标识，创建应用时自动生成，勿手动修改*/
-	"name": "「ONE·一个",/*应用名称，程序桌面图标名称*/
+	"name": "ONE",/*应用名称，程序桌面图标名称*/
 	"version": {
 		"name": "3.4.6",/*应用版本名称*/
 		"code": "83"
@@ -26,15 +26,11 @@
         "Cache": {
             "description": "管理应用缓存"
         },
-        "Camera": {
-            "description": "访问摄像头"
-        },
+        
         "Console": {
             "description": "跟踪调试输出日志"
         },
-        "Contacts": {
-            "description": "访问系统联系人信息"
-        },
+        
         "Device": {
             "description": "访问设备信息"
         },
@@ -47,18 +43,14 @@
         "File": {
             "description": "访问本地文件系统"
         },
-        "Gallery": {
-            "description": "访问系统相册"
-        },
+        
         "Geolocation": {
             "description": "访问位置信息"
         },
          "Invocation": {
             "description": "使用Native.js能力"
         },
-        "Messaging": {
-            "description": "访问通讯能力"
-        },
+        
         "Orientation": {
             "description": "访问方向感应器"
         },
@@ -81,12 +73,8 @@
         "Zip": {
             "description": "文件压缩与解压缩"
         },
-        "Barcode": {
-            "description": "管理二维码扫描插件"
-        },
-        "Maps": {
-            "description": "管理地图插件"
-        },
+        
+        
         "Speech": {
             "description": "管理语音识别插件"
         },
@@ -105,7 +93,7 @@
 	},
 	"plus": {
 		"statusbar": {
-	        "style": "UIStatusBarStyleBlackTranslucent"
+	        "UIStatusBarStyle": "UIStatusBarStyleBlackOpaque"
 	    },
 	    "hardwareAccelerated":true,
 		"splashscreen": {
@@ -122,6 +110,7 @@
 				"password": "",/*iOS应用打包个人证书导入密码*/
 				"p12": "",/*iOS应用打包个人证书，打包配置文件关联的个人证书*/
 				"devices": "universal",/*iOS应用支持的设备类型，可取值iphone/ipad/universal*/
+				
 				"frameworks": []
 			},
 			"google": {
@@ -129,7 +118,7 @@
 				"keystore": "",/*Android应用打包使用的密钥库文件*/
 				"password": "",/*Android应用打包使用密钥库中证书的密码*/
 				"aliasname": "",/*Android应用打包使用密钥库中证书的别名*/
-				"permissions": ["<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>","<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>","<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>","<uses-permission android:name=\"com.android.launcher.permission.INSTALL_SHORTCUT\"/>","<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>","<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>","<uses-permission android:name=\"android.permission.GET_TASKS\"/>","<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.READ_LOGS\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>","<uses-feature android:name=\"android.hardware.camera.autofocus\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>","<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>","<uses-permission android:name=\"android.permission.RECEIVE_USER_PRESENT\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>","<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>","<uses-permission android:name=\"com.android.launcher.permission.UNINSTALL_SHORTCUT\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>"]
+				"permissions": ["<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>","<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>","<uses-permission android:name=\"com.android.launcher.permission.INSTALL_SHORTCUT\"/>","<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"android.permission.GET_TASKS\"/>","<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.READ_LOGS\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>","<uses-permission android:name=\"android.permission.RECEIVE_USER_PRESENT\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>","<uses-permission android:name=\"com.android.launcher.permission.UNINSTALL_SHORTCUT\"/>"]
 			},
 			"orientation": ["portrait-primary", "portrait-secondary"],/*应用支持的方向，portrait-primary：竖屏正方向；portrait-secondary：竖屏反方向；landscape-primary：横屏正方向；landscape-secondary：横屏反方向*/
 			"icons": {
@@ -204,12 +193,17 @@
 					"js/mui.min.js",
 					"fonts/mui.ttf",
 					"css/mui.min.css",
-					"img/logo.png"
+					"img/logo.png",
+					"css/comment.css",
+					"home2.html",
+					"fonts/iconfont.ttf",
+					"img/music_story_selected.png"
 				],
 				"refer": [
 					"music.html",
 					"movie.html",
-					"reader.html"
+					"reader.html",
+					"home.html"
 				],
 				"priority": 0
 			},
@@ -219,9 +213,26 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css",
 					"js/castapp.js",
-					"js/time.js"
+					"js/time.js",
+					"js/webviewGroup.js",
+					"hp/tab-top-subpage-1.html",
+					"css/comment.css",
+					"img/music_story_selected.png",
+					"fonts/iconfont.ttf"
 				],
-				"refer": [],
+				"refer": [
+					"hp/tab-top-subpage-2.html",
+					"hp/tab-top-subpage-5.html",
+					"hp/tab-top-subpage-6.html",
+					"hp/tab-top-subpage-3.html",
+					"hp/tab-top-subpage-4.html",
+					"hp/tab-top-subpage-7.html",
+					"hp/tab-top-subpage-8.html",
+					"hp/tab-top-subpage-10.html",
+					"hp/tab-top-subpage-9.html",
+					"hp/tab-top-subpage-11.html",
+					"hp/tab-top-subpage-1.html"
+				],
 				"priority": 0
 			},
 			"reader.html": {
@@ -247,7 +258,14 @@
 					"img/start.png",
 					"img/pause.png",
 					"css/comment.css",
-					"fonts/iconfont.ttf"
+					"fonts/iconfont.ttf",
+					"img/music_about_default.png",
+					"js/time.js",
+					"img/music_lyric_default.png",
+					"img/music_story_selected.png",
+					"img/music_story_default.png",
+					"img/music_lyric_selected.png",
+					"img/music_about_selected.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -263,7 +281,8 @@
 					"movecontent.html"
 				],
 				"refer": [
-					"detail.html"
+					"detail.html",
+					"movecontent.html"
 				],
 				"priority": 0
 			},
@@ -277,7 +296,9 @@
 					"css/demo_videoPlaySimple.css",
 					"js/demo_videoPlaySimple.js",
 					"js/zepto.min.js",
-					"fonts/iconfont.ttf"
+					"fonts/iconfont.ttf",
+					"js/new.js",
+					"img/music_story_selected.png"
 				],
 				"refer": [
 					"play.html"
@@ -289,7 +310,12 @@
 					"js/castapp.js",
 					"js/mui.min.js",
 					"fonts/mui.ttf",
-					"css/mui.min.css"
+					"css/mui.min.css",
+					"css/comment.css",
+					"img/music_story_selected.png",
+					"fonts/iconfont.ttf",
+					"img/logo.png",
+					"img/start.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -321,17 +347,255 @@
 				],
 				"refer": [],
 				"priority": 0
+			},
+			"home2.html": {
+				"resources": [
+					"js/webviewGroup.js",
+					"hp/tab-top-subpage-1.html"
+				],
+				"refer": [
+					"hp/tab-top-subpage-2.html"
+				],
+				"priority": 0
+			},
+			"hp/tab-top-subpage-1.html": {
+				"resources": [
+					"js/mui.zoom.js",
+					"js/mui.previewimage.js",
+					"css/comment.css",
+					"js/mui.min.js",
+					"js/time.js",
+					"css/mui.min.css",
+					"fonts/iconfont.ttf",
+					"js/castapp.js",
+					"fonts/mui.ttf",
+					"img/music_story_selected.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"hp/tab-top-subpage-2.html": {
+				"resources": [
+					"js/castapp.js",
+					"js/mui.min.js",
+					"js/mui.zoom.js",
+					"js/time.js",
+					"js/mui.previewimage.js",
+					"css/comment.css",
+					"css/mui.min.css",
+					"fonts/iconfont.ttf",
+					"fonts/mui.ttf",
+					"img/music_story_selected.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"hp/tab-top-subpage-5.html": {
+				"resources": [
+					"js/castapp.js",
+					"js/mui.zoom.js",
+					"js/mui.min.js",
+					"js/time.js",
+					"js/mui.previewimage.js",
+					"css/comment.css",
+					"css/mui.min.css",
+					"fonts/iconfont.ttf",
+					"fonts/mui.ttf",
+					"img/music_story_selected.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"hp/tab-top-subpage-6.html": {
+				"resources": [
+					"js/castapp.js",
+					"js/mui.zoom.js",
+					"js/mui.min.js",
+					"js/time.js",
+					"js/mui.previewimage.js",
+					"css/comment.css",
+					"css/mui.min.css",
+					"fonts/iconfont.ttf",
+					"fonts/mui.ttf",
+					"img/music_story_selected.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"hp/tab-top-subpage-3.html": {
+				"resources": [
+					"js/castapp.js",
+					"js/mui.zoom.js",
+					"js/mui.min.js",
+					"js/time.js",
+					"js/mui.previewimage.js",
+					"css/comment.css",
+					"css/mui.min.css",
+					"fonts/iconfont.ttf",
+					"fonts/mui.ttf",
+					"img/music_story_selected.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"hp/tab-top-subpage-4.html": {
+				"resources": [
+					"js/castapp.js",
+					"js/mui.zoom.js",
+					"js/mui.min.js",
+					"js/time.js",
+					"js/mui.previewimage.js",
+					"fonts/iconfont.ttf",
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/comment.css",
+					"img/music_story_selected.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"hp/tab-top-subpage-7.html": {
+				"resources": [
+					"js/castapp.js",
+					"js/mui.zoom.js",
+					"js/mui.min.js",
+					"js/time.js",
+					"js/mui.previewimage.js",
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/comment.css",
+					"img/music_story_selected.png",
+					"fonts/iconfont.ttf"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"hp/tab-top-subpage-8.html": {
+				"resources": [
+					"js/castapp.js",
+					"js/mui.zoom.js",
+					"js/mui.min.js",
+					"js/time.js",
+					"js/mui.previewimage.js",
+					"css/comment.css",
+					"css/mui.min.css",
+					"fonts/iconfont.ttf",
+					"fonts/mui.ttf",
+					"img/music_story_selected.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"hp/tab-top-subpage-10.html": {
+				"resources": [
+					"js/castapp.js",
+					"js/mui.zoom.js",
+					"js/mui.min.js",
+					"js/time.js",
+					"js/mui.previewimage.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"hp/tab-top-subpage-9.html": {
+				"resources": [
+					"js/castapp.js",
+					"js/mui.zoom.js",
+					"js/mui.min.js",
+					"js/time.js",
+					"js/mui.previewimage.js",
+					"css/comment.css",
+					"css/mui.min.css",
+					"fonts/iconfont.ttf",
+					"fonts/mui.ttf",
+					"img/music_story_selected.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"hp/tab-top-subpage-11.html": {
+				"resources": [
+					"js/castapp.js",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css"
+				],
+				"refer": [
+					"history/history.html",
+					"detail.html",
+					"hp.html"
+				],
+				"priority": 0
+			},
+			"history/history.html": {
+				"resources": [
+					"js/mui.min.js",
+					"img/logo.png",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/castapp.js"
+				],
+				"refer": [
+					"history/hdetail.html"
+				],
+				"priority": 0
+			},
+			"hp.html": {
+				"resources": [
+					"js/castapp.js",
+					"js/mui.zoom.js",
+					"js/mui.min.js",
+					"js/time.js",
+					"js/mui.previewimage.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"history/hdetail.html": {
+				"resources": [
+					"js/castapp.js",
+					"js/mui.zoom.js",
+					"js/mui.min.js",
+					"js/time.js",
+					"js/mui.previewimage.js",
+					"css/comment.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"fonts/iconfont.ttf",
+					"img/music_story_selected.png"
+				],
+				"refer": [],
+				"priority": 0
 			}
 		},
 		"idle": {
 			"resources": [
+				"js/mui.imageViewer.js",
+				"js/mui.pullToRefresh.js",
+				"houtaiyunxing.html",
+				"js/mui.pullToRefresh.material.js",
+				"movestyle.html",
+				"js/movie.js",
+				"comment.html",
+				"css/mui.css",
+				"copy.html",
+				"css/home.css",
+				"zhezhao.html",
 				"js/mui.js",
-				"css/mui.css"
+				"pullrefresh_sub.html"
 			]
 		}
 	},
 	"unpackage":[
 	  "css/mui.css",
-	  "js/mui.js"
+	  "js/mui.js",
+	  "css/home.css",
+	  "js/movie.js",
+	  "comment.html",
+	  "copy.html",
+	  "houtaiyunxing.html",
+	  "movestyle.html",
+	  "pullrefresh_sub.html",
+	  "zhezhao.html"
 	]
 }

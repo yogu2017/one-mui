@@ -27,8 +27,13 @@
             <span class="mui-tab-label">电影</span>
         </a>
 </nav>
-<!--<script src="js/castapp.js" type="text/javascript" charset="utf-8"></script>-->
+<script src="js/castapp.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
+	castapp.init();
+	var pathArray = ['home.html','reader.html','music.html','movie.html'];
+	castapp.tabBar(pathArray);
+</script>
+<!--<script type="text/javascript">
 	//创建子页面
 	mui.init();
 	var subpages = ['home.html','reader.html','music.html','movie.html'];
@@ -36,8 +41,7 @@
 	    top: '0px',
 	    bottom: '50px',
 	    scrollIndicator: "none" ,// 当你的界面的内容足够多的时候，会出现滚动条，这个是隐藏滚动条
-	};
-	              
+	};             
 	//创建子页面，首个选项卡页面显示，其它均隐藏；
 	mui.plusReady(function(){
 	    //获得当前页面
@@ -89,6 +93,6 @@
 	        defaultTab.classList.add('mui-active');
 	    }
 	});
-</script>
+</script>-->
 </body>
 </html>

@@ -169,6 +169,10 @@
 						}	
 				}
 			});
-			
+		mui.plusReady(function(){
+			var currentView = plus.webview.currentWebview();
+			currentView.show('zoom-fade-out', 350);
+			plus.nativeUI.closeWaiting();	
+		});	
 	</script>
 </html>

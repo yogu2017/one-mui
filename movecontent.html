@@ -37,7 +37,7 @@
 				}
 			});
 			var table = document.body.querySelector('.mui-table-view');
-					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+			var cells = document.body.querySelectorAll('.mui-table-view-cell');
 			ca.get({
 			url:'http://v3.wufazhuce.com:8000/api/channel/movie/more/0',
 			data:{state:'index'},
@@ -64,16 +64,9 @@
 					for (a=0;a<cell.length;a++) {
 						cell[a].addEventListener('tap',function(){
 							var id = this.getAttribute("fid");
-							  localStorage.setItem('id',id);
-							  ca.newInterface({
-							  	url:'detail.html',
-							  	id:'detail',
-							  	waiting:{
-							      autoShow:true,//自动显示等待框，默认为true
-							      title:'正在加载...',//等待对话框上显示的提示内容
-							    }
-														  	
-							  });
+							localStorage.setItem('id',id);
+							var nwaiting = plus.nativeUI.showWaiting();  
+							webviewShow = plus.webview.create('detail.html');
 						})
 					}
 					

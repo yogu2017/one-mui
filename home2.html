@@ -16,7 +16,7 @@
 			}
 			
 			.mui-bar~.mui-content .mui-fullscreen {
-				top: 44px;
+				top: 4px;
 				height: auto;
 			}
 			
@@ -90,8 +90,9 @@
 			.mui-pull-top-canvas canvas {
 				width: 40px;
 			}
+			
 			.mui-slider-indicator.mui-segmented-control {
-				background-color: white;
+				background-color: #efeff4;
 			}
 		</style>
 	</head>
@@ -149,8 +150,7 @@
 		<script>
 			mui.init();
 			mui.plusReady(function() {
-				var currentId=plus.webview.currentWebview().id;  
-				
+				 var currentId=plus.webview.currentWebview().id;  
 				var group = new webviewGroup(currentId, {
 					items: [{
 						id: "tab-top-subpage-1.html",
@@ -188,34 +188,28 @@
 						id: "tab-top-subpage-9.html",
 						url: "hp/tab-top-subpage-9.html",
 						extras: {}
-					}, 
-//					{
-//						id: "tab-top-subpage-10.html",
-//						url: "hp/tab-top-subpage-10.html",
-//						extras: {}
-//					},
-					{
-						id: "tab-top-subpage-11.html",
-						url: "hp/tab-top-subpage-11.html",
+					}, {
+						id: "tab-top-subpage-10.html",
+						url: "hp/tab-top-subpage-10.html",
 						extras: {}
 					}],
 					onChange: function(obj) {
 						var c = document.querySelector(".mui-control-item.mui-active");
 						if(c) {
 							c.classList.remove("mui-active");
-							
 						}
-						document.querySelector(".mui-scroll .mui-control-item:nth-child(" + (parseInt(obj.index) + 1) + ")").classList.add("mui-active");				
+						document.querySelector(".mui-scroll .mui-control-item:nth-child(" + (parseInt(obj.index) + 1) + ")").classList.add("mui-active");
 					}
 				});
 				mui(".mui-scroll").on("tap", ".mui-control-item", function(e) {
 					var wid = this.getAttribute("data-wid");
 					group.switchTab(wid);
 				});
+
 			});
 			mui.back = function() {
 				var _self = plus.webview.currentWebview();
-				_self.close("fade-out");
+				_self.close("auto");
 			}
 		</script>
 	</body>
