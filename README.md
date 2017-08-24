@@ -4,7 +4,7 @@ one一个  
 mui版未完结，带完结求帮助
 往期目录已经实现，首页左右滑动实现的不够完美，webview，滑动之后会遮盖下面导航栏，待解决！
 
-![image](https://github.com/yogu2017/one-mui/raw/master/screenshot/2.gif)
+![image](https://github.com/yogu2017/one-mui/raw/master/screenshot/1.gif)
 ![image](https://github.com/yogu2017/one-mui/raw/master/screenshot/1.png)
 ![image](https://github.com/yogu2017/one-mui/raw/master/screenshot/2.png)
 ![image](https://github.com/yogu2017/one-mui/raw/master/screenshot/3.png)
