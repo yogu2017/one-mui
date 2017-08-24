@@ -53,7 +53,7 @@ window.dongyi = window.dj = window.castapp = window.ca =  {
 				}
 			}
 //			if(topBar){
-//				var topBarColor = getComputedStyle(topBar,true)['backgroundColor']; 
+//				var topBarColor = getComputedStyle(topBar,false)['backgroundColor']; 
 //		    		if(gM.os.ios){
 //				    gP.navigator.setStatusBarStyle(topBarType);
 //				    gP.navigator.setStatusBarBackground(topBarColor);
