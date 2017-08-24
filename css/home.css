@@ -36,3 +36,9 @@
 .icon-movie:before { content: "\e604"; }
 
 .icon-music:before { content: "\e605"; }
+.mui-slider .mui-slider-group .mui-slider-item img {
+    width: 100%;
+    margin: 0;
+    height: 350px;
+    object-fit: cover;
+}
