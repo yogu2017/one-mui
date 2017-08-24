@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+	<link href="../css/mui.min.css" rel="stylesheet"/>
+	<script src="../js/time.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+    <link rel="stylesheet" type="text/css" href="../css/comment.css"/>
+    <style type="text/css">
+    	.mui-scroll-wrapper{
+    		position:static;
+    	}
+    	img{height: 250px;}
+    	.mui-slider .mui-slider-group .mui-slider-item img {
+		    width: auto;
+		    height: auto;
+		    max-width: 100%;
+		    max-height: 100%;
+		}
+    </style>
+</head>
+<body>
+		<div class="mui-content">
+			<div class="mui-scroll-wrapper">
+			    <div class="mui-scroll">
+			        <!--这里放置真实显示的DOM内容-->
+			        <div style="padding: 6px;margin:8px;background-color: white;border: 1PX solid #DDDDDD;">	
+				    	<div id="head"></div>
+				    	<p style="font-size: 12px;text-align: right;" id="time"></p>
+				    	
+					</div>
+					<div style="margin-top: 10px;margin-left: 1rem;">
+					    	<div style="float: left;">
+					    		<span class="iconfont icon-bianji"></span>
+					    		<span style="font-size: 0.8rem;">小记</span>
+					    	</div>
+					    	<!--心-->
+					    	<div style="float: left;position: absolute;right: 20%;">
+					    		<span class="iconfont icon-xihuan"></span>
+					    		<span id="praisenum" style="font-size: 0.8rem;"></span>
+					    	</div>
+					    	<!--转发-->
+					    	<div style="float: right;margin-right: 1rem;">
+					    		<span class="iconfont icon-iconfontzhuanfa"></span>
+					    </div>
+					</div>
+			    </div>
+			</div>
+		</div>	
+	</body>
+	<script src="../js/castapp.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		ca.init();
+		var content =ca.id('content');
+		var praisenum = ca.id('praisenum');
+		ca.get({
+				url:'http://v3.wufazhuce.com:8000/api/hp/idlist/0',
+				succFn:function(data){
+				   var json = JSON.parse(data);
+//				   alert(json.data[0]);
+				   		castapp.get({
+								url:'http://v3.wufazhuce.com:8000/api/hp/detail/'+json.data[1],
+								succFn:function(data){
+								    var data = JSON.parse(data);
+//								    alert(data.data.hp_content) 
+//								    content.innerText = data.data.hp_content; 
+									var head = ca.id('head');
+									var time =ca.id('time');
+									time.innerHTML = getCurrentDate(data.data.hp_makettime.substring(0,11).replace(/-/g, "/"));
+									var tpl = '<img src="'+data.data.hp_img_url+'" width=100% display:block; style="object-fit: cover;" data-preview-src="" data-preview-group="1"/>'
+									    	  +'<span style="float: left;color: gray;font-size: 10px;">'+data.data.hp_title+'</span>'
+									    	  +'<span style="float: right;color: gray;font-size: 10px;"><span>'+data.data.hp_author+'</span>'
+									    	  +'</span>'
+									    	  +'<p style="clear: both;padding: 15px 0 0 0;color: #353535;font-size: 12px;" id="content">'
+									    	  +data.data.hp_content+'</p>';
+//									    	  +'<p style="font-size: 13px;text-align: right;">'+getCurrentDate(data.data.hp_makettime.substring(0,11))+'</p>';
+									head.innerHTML = tpl;
+									praisenum.innerHTML = data.data.praisenum;
+								}}
+							);
+				}}
+			);
+	</script>
+</body>
+	<script src="../js/mui.zoom.js"></script>
+	<script src="../js/mui.previewimage.js"></script>
+	<script>
+		mui.previewImage();
+	</script>
+
+</html>

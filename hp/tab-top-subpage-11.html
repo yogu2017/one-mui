@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+		</script>
+	</head>
+	<body>
+		
+		<header class="mui-bar mui-bar-nav">
+		    <h1 class="mui-title">往期列表</h1>
+		</header>
+		<div class="mui-content">
+		    <ul class="mui-table-view">
+		            <li class="mui-table-view-cell" >
+		                <a class="mui-navigate-right">
+		                                    本月
+		                </a>
+		            </li>
+		            <div id="month"></div>
+		       </ul>		        
+		</div>
+	</body>
+	<script src="../js/castapp.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		ca.init();
+		var year = new Date();
+		var year1 = year.getFullYear();
+		var year2 = '2012';
+		var date = year1-year2;
+ 		var len = date*12 -1
+		var month =ca.id('month');
+		//根据当前月,取得历史月份集合(从当前月前推:历史)  
+            function complementHistoryDate(len) {  
+                var complDate = [];  
+                var curDate = new Date();  
+                var y = curDate.getFullYear();  
+                var m = curDate.getMonth() + 1;  
+                //第一次装入当前月(格式yyyy-mm)  
+                complDate[0] = y + "-" + (m.toString().length == 1 ? "0" + m : m);  
+                m--;  
+                //第一次已经装入,len少计算一次  
+                for (var i = 1; i < len; i++, m--) {  
+                    if (m == 0) {  
+                        //到1月后,后推一年  
+                        y--;  
+                        m = 12; //再从12月往后推  
+                    }  
+                    complDate[i] = y + "-" + (m.toString().length == 1 ? "0" + m : m);  
+                }  
+                return complDate;  
+            };
+//          console.log(complementHistoryDate(len));
+//          console.log(complementHistoryDate(len).length);
+            var numMonth = complementHistoryDate(len);
+            
+		for(var a=1;a<len;a++){
+			
+			tpl =   '<li class="mui-table-view-cell" date-id="'+numMonth[a]+'">'
+					            +    '<a class="mui-navigate-right">'
+					            +        numMonth[a]
+					            +   ' </a>'
+					            +'</li>'
+			month.innerHTML +=tpl;
+		};
+			var li =ca.tagName('li');
+			li[0].setAttribute('date-id',numMonth[0]);
+			for (i=0;i<li.length;i++) {
+				li[i].addEventListener('tap',function(){
+					var id = this.getAttribute('date-id');
+					localStorage.setItem('monthid',id);
+					var nwaiting = plus.nativeUI.showWaiting(); 
+					webviewShow = plus.webview.create('../history/history.html');
+				});
+			};
+			
+	</script>
+</html>
