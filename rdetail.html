@@ -132,22 +132,22 @@
 					bianji.innerHTML = json.data.charge_edt+' '+json.data.charge_email;
 				}
 			});
-				ca.get({
-					url:'http://v3.wufazhuce.com:8000/api/comment/praise/question/'+bookid+'/0?version=v4.1',
-					date:{state:'index'},
-					succFn:function(data){
-						var json2 = JSON.parse(data);
-						var comment = ca.id('comment');
-						for (var s=0;s<json2.data.data.length;s++) {
-							var tpl = '<div class="commentlist"><ul><img src="'+json2.data.data[s].user.web_url+'" class="commentpic"/>'
-							   			+'<li>'+json2.data.data[s].user.user_name+'</li>'
-							   			+'<li>'+json2.data.data[s].created_at.substring(0,16)+'</li></ul>'
-							   			+'<div style="margin-left: 2.6rem;">'+json2.data.data[s].content+'</div>'
-							   			+'<div style="border-bottom:1px solid gainsboro;"></div></div>';
-							comment.innerHTML += tpl;	
-						}
+			ca.get({
+				url:'http://v3.wufazhuce.com:8000/api/comment/praise/question/'+bookid+'/0?version=v4.1',
+				date:{state:'index'},
+				succFn:function(data){
+					var json2 = JSON.parse(data);
+					var comment = ca.id('comment');
+					for (var s=0;s<json2.data.data.length;s++) {
+						var tpl = '<div class="commentlist"><ul><img src="'+json2.data.data[s].user.web_url+'" class="commentpic"/>'
+									+'<li>'+json2.data.data[s].user.user_name+'</li>'
+									+'<li>'+json2.data.data[s].created_at.substring(0,16)+'</li></ul>'
+									+'<div style="margin-left: 2.6rem;">'+json2.data.data[s].content+'</div>'
+									+'<div style="border-bottom:1px solid gainsboro;"></div></div>';
+						comment.innerHTML += tpl;	
 					}
-				});
+				}
+			});
 			}
 			
 		</script>
