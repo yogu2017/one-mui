@@ -25,11 +25,6 @@
 		<div class="mui-content">
 			<div id="content" style="margin-top:10px;">
 				
-				<!--<span style="font-size: 24px;line-height: 24px;">1212</span>-->	
-				<!--<img id="pic" src="#" width="100%" height="170px"/>
-				<h5 id="forward"></h5>-->
-				<!--<p style="position: absolute;top: 100px;right: 15px;color:tomato;font-size: 50px;">99</p>
-				<img src="img/red.png" style="position: absolute;right: 10px;top: 125px;width: 100px;"/>-->
 			</div>
 			
 		</div>
@@ -50,39 +45,5 @@
 			}] 
 		});
 		</script>
-	<!--<script src="js/castapp.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript">
-		ca.init();
-		var content = ca.id('content');
-		ca.get({
-			url:'http://v3.wufazhuce.com:8000/api/channel/movie/more/0',
-			data:{state:'index'},
-			succFn:function(data){
-				var json = JSON.parse(data);
-//				alert(json.data[0].img_url);
-//				title.innerHTML = json.data[0].title;
-//				pic.src = json.data[0].img_url;
-//				forward.innerHTML = json.data[0].forward
-				for (i=0;i<json.data.length;i++) {
-					var tpl =   '<span style="font-size: 22px;line-height: 24px;display:block;padding:10px">'+json.data[i].title+'</span>'	
-								
-								+'<img class="jump" src="'+json.data[i].img_url+'" width="100%" fid = "'+json.data[i].item_id+'"/>';
-//								+'<h5>'+json.data[i].forward+'</h5>';
-						content.innerHTML += tpl;
-						}
-					var cell = ca.tagName('img')
-					for (a=0;a<cell.length;a++) {
-						cell[a].addEventListener('tap',function(){
-							var id = this.getAttribute("fid");
-							  localStorage.setItem('id',id);
-							  ca.newInterface({
-							  	url:'detail.html',
-							  	id:'detail'
-							  })
-						})
-					}
-					
-			}
-		})
-	</script>-->
+	
 </html>
