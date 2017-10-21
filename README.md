@@ -8,7 +8,8 @@ one一个<br><br>
 电影版快3.5版本的基本报废，故换作类4.0版本界面（未美化）<br>
 mui版未完结<br>
 http://fir.im/9jdp 安卓版可以下载预览<br>
-<span style="text-decoration:line-through">往期目录已经实现，首页左右滑动实现的不够完美，webview，滑动之后会遮盖下面导航栏，待解决！</sapn><br>
+
+~~往期目录已经实现，首页左右滑动实现的不够完美，webview，滑动之后会遮盖下面导航栏，待解决！~~<br>
 
 ![image](https://github.com/yogu2017/one-mui/raw/master/screenshot/1.gif)<br>
 ![image](https://github.com/yogu2017/one-mui/raw/master/screenshot/1.png)
