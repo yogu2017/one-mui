@@ -33,7 +33,6 @@ proto._initNativeView = function() {
 		'height': (window.screen.height - 44)+"px",
 		'left': '100%',
 		'width': '100%',
-		"backgroundColor":"#ffffff"
 	});
 	this.nativeView.show();
 };
