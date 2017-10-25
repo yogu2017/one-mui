@@ -1,18 +1,4 @@
 (function(){
-	
-/**
- * Dongyi.js
- * 版本: 1.0.9 修改时间2016-10-19
- * 2016.1.1 更名为 CastApp.js
- * 东翌@版权所有 
- * 东翌学院是国内第一跨平台APP开发培训机构!
- * http://www.dongyixueyuan.com
- * CastApp 让app开发更简单!
- * http://www.castapp.cn
- * 作者QQ: 2195138852
- * 
- */
-
 var gP,
 	gM,
 	gObject,
