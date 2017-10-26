@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			.xb{
+				position: relative;
+			    float: right;
+			    top: -20px;
+				border: 1px solid #86bef8;
+				line-height: 19px;
+				font-size: 12px; 
+				border-radius: 20%;
+				padding:0 5px;
+				text-align: center;
+				color: #86bef8;
+			}
+			.mui-bar{
+			background-color: white;
+			}
+			h4{
+				font-size: 13px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content">
+		    <div class="mui-content-padded" style="border: 1px solid #EAEAEA;" id="sec">
+		    
+		    </div>
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/castapp.js" type="text/javascript" charset="utf-8"></script>	
+	<script type="text/javascript">
+		ca.init();
+		var sec = ca.id('sec');
+		ca.get({
+			url:'http://v3.wufazhuce.com:8000/api/reading/index/',
+			date:{state:'index'},
+			succFn:function(data){
+				var json = JSON.parse(data);
+				var tpl =  '<book did="'+json.data.essay[5].content_id+'"><h4>'+json.data.essay[5].hp_title+'</h4>'
+				    	+	'<span class="xb">短篇</span>'
+				    	+	'<p>'+json.data.essay[5].author[0].user_name+'</p>'
+				    	+	'<p>'+json.data.essay[5].guide_word+'</p></book>'
+				    	+	'<book lid="'+json.data.serial[5].id+'"><h4>'+json.data.serial[5].title+'</h4>'
+				    	+	'<span class="xb">连载</span>'
+				    	+	'<p>'+json.data.serial[5].author.user_name+'</p>'
+				    	+	'<p>'+json.data.serial[5].excerpt+'</p></book>'
+				    	+	'<book qid="'+json.data.question[5].question_id+'"><h4 style="width: 80%;">'
+				    	+   json.data.question[5].question_title+'</h4>'
+				    	+	'<span class="xb"">问答</span>'
+				    	+	'<p>'+json.data.question[5].answer_content+'</p></book>';
+				    	sec.innerHTML = tpl;
+				var book = ca.tagName('book');
+					book[0].addEventListener('tap',function(){
+						var bookdid = this.getAttribute("did");
+							  localStorage.setItem('did',bookdid);
+							  ca.newInterface({
+							  	url:'rdetail.html',
+							  	id:'bookdid'
+							  })
+					});
+					book[1].addEventListener('tap',function(){
+						var booklid = this.getAttribute("lid");
+							  localStorage.setItem('lid',booklid);
+							  ca.newInterface({
+							  	url:'rdetail.html',
+							  	id:'booklid',
+							  })
+					});
+					book[2].addEventListener('tap',function(){
+						var bookqid = this.getAttribute("qid");
+							  localStorage.setItem('qid',bookqid);
+							  ca.newInterface({
+							  	url:'rdetail.html',
+							  	id:'bookqid'
+							  })
+					});
+			}
+		})
+	</script>
+	
+	
+</html>

@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		    <div id="slider" class="mui-slider mui-fullscreen">
+				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div class="mui-scroll">
+						<a class="mui-control-item mui-active" href="#item1mobile" data-wid="read-subpage-01.html">
+							
+						</a>
+						<a class="mui-control-item" href="#item2mobile" data-wid="read-subpage-02.html">
+							
+						</a>
+						<a class="mui-control-item" href="#item3mobile" data-wid="read-subpage-03.html">
+							
+						</a>
+						<a class="mui-control-item" href="#item4mobile" data-wid="read-subpage-04.html">
+							
+						</a>
+						<a class="mui-control-item" href="#item5mobile" data-wid="read-subpage-05.html">
+							
+						</a>
+						<a class="mui-control-item" href="#item6mobile" data-wid="read-subpage-06.html">
+							
+						</a>
+						<a class="mui-control-item" href="#item7mobile" data-wid="read-subpage-07.html">
+							
+						</a>
+						<a class="mui-control-item" href="#item8mobile" data-wid="read-subpage-08.html">
+							
+						</a>
+						<a class="mui-control-item" href="#item9mobile" data-wid="read-subpage-09.html">
+							
+						</a>
+						<a class="mui-control-item" href="#item10mobile" data-wid="read-subpage-10.html">
+							
+						</a>
+					</div>
+				</div>
+			</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+		<script src="../js/readwebviewGroup.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			mui.init();
+			mui.plusReady(function() {
+				var currentId=plus.webview.currentWebview().id;  
+				var group = new webviewGroup(currentId, {
+					items: [{
+						id: "read-subpage-01.html",
+						url: "read-subpage-01.html",
+						extras: {}
+					}, {
+						id: "read-subpage-02.html",
+						url: "read-subpage-02.html",
+						extras: {}
+					}, {
+						id: "read-subpage-03.html",
+						url: "read-subpage-03.html",
+						extras: {}
+					}, {
+						id: "read-subpage-04.html",
+						url: "read-subpage-04.html",
+						extras: {}
+					}, {
+						id: "read-subpage-05.html",
+						url: "read-subpage-05.html",
+						extras: {}
+					}, {
+						id: "read-subpage-06.html",
+						url: "read-subpage-06.html",
+						extras: {}
+					}, {
+						id: "read-subpage-07.html",
+						url: "read-subpage-07.html",
+						extras: {}
+					}, {
+						id: "read-subpage-08.html",
+						url: "read-subpage-08.html",
+						extras: {}
+					}, {
+						id: "read-subpage-09.html",
+						url: "read-subpage-09.html",
+						extras: {}
+					}, 
+					{
+						id: "read-subpage-10.html",
+						url: "read-subpage-10.html",
+						extras: {}
+					}],
+					onChange: function(obj) {
+						var c = document.querySelector(".mui-control-item.mui-active");
+						if(c) {
+							c.classList.remove("mui-active");
+							
+						}
+						document.querySelector(".mui-scroll .mui-control-item:nth-child(" + (parseInt(obj.index) + 1) + ")").classList.add("mui-active");				
+					}
+				});
+				mui(".mui-scroll").on("tap", ".mui-control-item", function(e) {
+					var wid = this.getAttribute("data-wid");
+					group.switchTab(wid);
+				});
+			});
+			mui.back = function() {
+				var _self = plus.webview.currentWebview();
+				_self.close("fade-out");
+			}
+		</script>
+</html>

@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/comment.css"/>
+		<script src="../js/mui.min.js"></script>
+		<style type="text/css">
+			.mui-content{
+				margin:0 0.5rem;
+			}
+			.commentlist{
+				border-bottom: 1px solid #cec9c9;
+			}
+		</style>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack:true
+				});
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title" id="tittle"></h1>
+		</header>
+		<div class="mui-content" >
+			<!--<div class="commentlist">
+				<img src="img/logo.png"/ class="commentuser">
+				<span style=" top: 15px; position: relative;color:#86bef8;">作者</span>
+				<span style="position: relative;display: block; ">Aug 23.2017</span>
+			</div>
+			<img src="img/start.png" style="width: 30px;float: right; margin-top: -3.2rem;"/>-->
+			<h3 id="headtitle"></h3>  <!--标题-->
+			<span id="author"></span>
+		    <div id="rdetail"></div>  <!--内容-->
+		    <div id="bianji"></div>   <!--编辑-->
+		      <p style="border-bottom:1px solid black;width: 80px;margin-bottom: 0px">评论列表：</p>
+		   		<span id="comment"></span>
+		</div>
+		
+	</body>
+		<script src="../js/castapp.js" type="text/javascript" charset="utf-8"></script>
+		<script src="html5plus://ready"></script>
+		<script type="text/javascript">
+			ca.init();
+			var self = plus.webview.currentWebview();
+			var tittle = ca.id('tittle');
+			var author = ca.id('author');
+			var contact = ca.id('rdetail') ;
+			var headtitle = ca.id('headtitle');
+			var bianji = ca.id('bianji');
+			if (self.id=='bookdid') {
+			var bookid = localStorage.getItem('did');
+				ca.get({
+					url:'http://v3.wufazhuce.com:8000/api/essay/'+bookid+'?version=v4.1',
+					date:{state:'index'},
+					succFn:function(data){
+						var data = data.replace(/style=/g, "")
+						var json =JSON.parse(data);
+						tittle.innerHTML = '阅读·短篇';
+						headtitle.innerHTML = json.data.hp_title;
+						author.innerHTML= '作者：'+json.data.author[0].user_name;
+						contact.innerHTML = json.data.hp_content;
+					bianji.innerHTML = json.data.hp_author_introduce+' '+json.data.editor_email;
+				}
+			});
+				ca.get({
+					url:'http://v3.wufazhuce.com:8000/api/comment/praise/essay/'+bookid+'/0?version=v4.1',
+					date:{state:'index'},
+					succFn:function(data){
+						var json2 = JSON.parse(data);
+						var comment = ca.id('comment');
+						for (var s=0;s<json2.data.data.length;s++) {
+							var tpl = '<div class="commentlist"><ul><img src="'+json2.data.data[s].user.web_url+'" class="commentpic"/>'
+							   			+'<li>'+json2.data.data[s].user.user_name+'</li>'
+							   			+'<li>'+json2.data.data[s].created_at.substring(0,16)+'</li></ul>'
+							   			+'<div style="margin-left: 2.6rem;">'+json2.data.data[s].content+'</div>'
+							   			+'<div style="border-bottom:1px solid gainsboro;"></div></div>';
+							comment.innerHTML += tpl;	
+						}
+					}
+				});
+			}else if(self.id == 'booklid'){
+			var bookid = localStorage.getItem('lid');
+				ca.get({
+					url:'http://v3.wufazhuce.com:8000/api/serialcontent/'+bookid+'?version=v4.1',
+					date:{state:'index'},
+					succFn:function(data){
+						var data = data.replace(/style=/g, "")
+						var json =JSON.parse(data);
+						tittle.innerHTML = '阅读·连载';
+						headtitle.innerHTML = json.data.title;
+						author.innerHTML= '作者：'+json.data.author.user_name;
+						contact.innerHTML = json.data.content;
+					bianji.innerHTML = json.data.charge_edt+' '+json.data.editor_email;
+				}
+			});
+				ca.get({
+					url:'http://v3.wufazhuce.com:8000/api/comment/praise/serial/'+bookid+'/0?version=v4.1',
+					date:{state:'index'},
+					succFn:function(data){
+						var json2 = JSON.parse(data);
+						var comment = ca.id('comment');
+						for (var s=0;s<json2.data.data.length;s++) {
+							var tpl = '<div class="commentlist"><ul><img src="'+json2.data.data[s].user.web_url+'" class="commentpic"/>'
+							   			+'<li>'+json2.data.data[s].user.user_name+'</li>'
+							   			+'<li>'+json2.data.data[s].created_at.substring(0,16)+'</li></ul>'
+							   			+'<div style="margin-left: 2.6rem;">'+json2.data.data[s].content+'</div>'
+							   			+'<div style="border-bottom:1px solid gainsboro;"></div></div>';
+							comment.innerHTML += tpl;	
+						}
+					}
+				});
+			}else{
+				var bookid = localStorage.getItem('qid');
+				ca.get({
+					url:'http://v3.wufazhuce.com:8000/api/question/'+bookid+'?version=v4.1',
+					date:{state:'index'},
+					succFn:function(data){
+						var data = data.replace(/style=/g, "")
+						var json =JSON.parse(data);
+						tittle.innerHTML = '阅读·问答';
+						headtitle.innerHTML = json.data.question_title;
+						author.innerHTML= '——'+json.data.asker.user_name+'问道';
+						contact.innerHTML = json.data.answerer.user_name+'答:<br>'+json.data.answer_content;
+					bianji.innerHTML = json.data.charge_edt+' '+json.data.charge_email;
+				}
+			});
+				ca.get({
+					url:'http://v3.wufazhuce.com:8000/api/comment/praise/question/'+bookid+'/0?version=v4.1',
+					date:{state:'index'},
+					succFn:function(data){
+						var json2 = JSON.parse(data);
+						var comment = ca.id('comment');
+						for (var s=0;s<json2.data.data.length;s++) {
+							var tpl = '<div class="commentlist"><ul><img src="'+json2.data.data[s].user.web_url+'" class="commentpic"/>'
+							   			+'<li>'+json2.data.data[s].user.user_name+'</li>'
+							   			+'<li>'+json2.data.data[s].created_at.substring(0,16)+'</li></ul>'
+							   			+'<div style="margin-left: 2.6rem;">'+json2.data.data[s].content+'</div>'
+							   			+'<div style="border-bottom:1px solid gainsboro;"></div></div>';
+							comment.innerHTML += tpl;	
+						}
+					}
+				});
+			}
+			
+		</script>
+</html>
