@@ -7,31 +7,16 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<script src="js/mui.min.js"></script>
-		<script type="text/javascript">
-			mui.init()
-		</script>
 		<style type="text/css">
-			.xb{
-				position: relative;
-			    float: right;
-			    top: -20px;
-				border: 1px solid #86bef8;
-				line-height: 19px;
-				font-size: 12px; 
-				border-radius: 20%;
-				padding:0 5px;
-				text-align: center;
-				color: #86bef8;
-			}
 			.mui-bar{
 			background-color: white;
 			}
-			h4{
-				font-size: 13px;
+			img{
+				height: 200px;
 			}
 		</style>
 	</head>
- <!--近期把滑动查看历史也做了，同样还是webview，但是发现有bug，解决中-->
+
 	<body>
 		<header class="mui-bar mui-bar-nav">
 		  <a class=" mui-icon mui-icon-search mui-pull-left">
@@ -61,47 +46,21 @@
 				            <div class="mui-indicator"></div>
 				            <div class="mui-indicator"></div>
 				            <div class="mui-indicator"></div>
-				            <div class="mui-indicator"></div> 
+				            <div class="mui-indicator"></div>
 			          </div>
        		 	</div>
-	     </div>
-		    <div class="mui-content-padded" style="border: 1px solid #EAEAEA;" id="sec">
-		    	
-		    		<!--<h4>标题</h4>
-		    		<span class="xb">短篇</span>
-		    		<p>作者</p>
-		    		<p>简介</p>
-		    	<h4>标题</h4>
-		    		<span class="xb">连载</span>
-		    		<p>作者</p> 
-		    		<p>简介</p>
-		    	
-		    		<h4 style="width: 70%;">标题标题标题标题标题标题标题标题标题标题</h4>
-		    		<span class="xb"">问答</span>
-		    		<p>作者</p>
-		    		<p>简介</p>-->
-		    	<!--api:http://v3.wufazhuce.com:8000/api/reading/carousel-->
-		    </div>
-		</div>
+	   </div>
 	</body>
 	<script src="js/castapp.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		ca.init();
 		var img = ca.tagName('img');
 		var link =ca.tagName('a');
-//		alert(link.length)
-//		alert(img.length)
 		ca.get({
 			url:'http://v3.wufazhuce.com:8000/api/reading/carousel',
 			data:{state:'index'},
 			succFn:function(data){
 				var data1 = JSON.parse(data)
-//				alert(data1.data.length)
-//				for (a=0;a<data1.data.length;a++) {
-//						img[a].src = data1.data[a].cover;
-//						
-//						
-//				}
 				img[0].src = data1.data[5].cover;
 				img[1].src = data1.data[0].cover;
 				img[2].src = data1.data[1].cover;
@@ -114,54 +73,22 @@
 				
 			}
 		});
-		var sec = ca.id('sec');
-		ca.get({
-			url:'http://v3.wufazhuce.com:8000/api/reading/index/',
-			date:{state:'index'},
-			succFn:function(data){
-				var json = JSON.parse(data);
-				var tpl =  '<book did="'+json.data.essay[0].content_id+'"><h4>'+json.data.essay[0].hp_title+'</h4>'
-				    	+	'<span class="xb">短篇</span>'
-				    	+	'<p>'+json.data.essay[0].author[0].user_name+'</p>'
-				    	+	'<p>'+json.data.essay[0].guide_word+'</p></book>'
-				    	+	'<book lid="'+json.data.serial[0].id+'"><h4>'+json.data.serial[0].title+'</h4>'
-				    	+	'<span class="xb">连载</span>'
-				    	+	'<p>'+json.data.serial[0].author.user_name+'</p>'
-				    	+	'<p>'+json.data.serial[0].excerpt+'</p></book>'
-				    	+	'<book qid="'+json.data.question[0].question_id+'"><h4 style="width: 80%;">'+json.data.question[0].question_title+'</h4>'
-				    	+	'<span class="xb"">问答</span>'
-				    	+	'<p> &nbsp</p>'
-				    	+	'<p>'+json.data.question[0].answer_content+'</p></book>';
-				    	sec.innerHTML = tpl;
-				var book = ca.tagName('book');
-					book[0].addEventListener('tap',function(){
-						var bookdid = this.getAttribute("did");
-							  localStorage.setItem('did',bookdid);
-							  ca.newInterface({
-							  	url:'rdetail.html',
-							  	id:'bookdid'
-							  })
-					});
-					book[1].addEventListener('tap',function(){
-						var booklid = this.getAttribute("lid");
-							  localStorage.setItem('lid',booklid);
-							  ca.newInterface({
-							  	url:'rdetail.html',
-							  	id:'booklid',
-							  	
-							  	
-							  })
-					});
-					book[2].addEventListener('tap',function(){
-						var bookqid = this.getAttribute("qid");
-							  localStorage.setItem('qid',bookqid);
-							  ca.newInterface({
-							  	url:'rdetail.html',
-							  	id:'bookqid'
-							  })
-					});
-				
-			}
-		})
 	</script>
+	<script type="text/javascript">
+			mui.init({
+				gestureConfig:{
+				doubletap:true
+			},
+			subpages:[{ 
+				url:'read/readdown.html',
+				id:'readdown.html',
+				styles:{
+					top: '245px',
+					bottom: '0px', 
+					background: 'transparent',
+					bounce:'horizontal',
+				}
+			}] 
+		});
+		</script>
 </html>
