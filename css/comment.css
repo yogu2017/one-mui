@@ -13,7 +13,7 @@ li{
 	margin-left: 0.5rem;
 }
 li:last-child{
-	/*float: right;*/
+	float: right;
 }
 img{
 	max-width: 100%;
