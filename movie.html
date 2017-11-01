@@ -1,16 +1,13 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
 	<head>
-		<meta charset="UTF-8">
+		<meta charset="utf-8">
 		<title></title>
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<link href="css/mui.min.css" rel="stylesheet" />
-		<style type="text/css">
-		.mui-bar{
-			background-color: white;
-		}
-		</style>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min.css">
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav">
@@ -22,28 +19,161 @@
 		  </a>
 		  <h1 class="mui-title">电影</h1>
 		</header>
-		<div class="mui-content">
-			<div id="content" style="margin-top:10px;">
-				
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<!--数据列表-->
+				<ul class="mui-table-view mui-table-view-chevron">
+					
+				</ul>
 			</div>
-			
-		</div>
+		</div> 
 	</body>
-		<script src="js/mui.min.js"></script>
+	<script src="js/mui.min.js"></script>
+	<script src="js/castapp.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
+			ca.init();
+			var content = ca.id('content');
 			mui.init({
-			gestureConfig:{
-				doubletap:true
-			},
-			subpages:[{ 
-				url:'movecontent.html',
-				id:'movecontent.html',
-				styles:{
-					top: '45px',
-					bottom: '0px', 
+				swipeBack: false,
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						style:'circle',
+						 color:'#007aff',
+						 auto: true,
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
 				}
-			}] 
+			});
+			var table = document.body.querySelector('.mui-table-view');
+			var cells = document.body.querySelectorAll('.mui-table-view-cell');
+			ca.get({
+			url:'http://v3.wufazhuce.com:8000/api/channel/movie/more/0',
+			data:{state:'index'},
+			succFn:function(data){
+				var json = JSON.parse(data);
+				var id = json.data[9].id;
+				var one = json.data[0].id;
+				localStorage.setItem('one',one);
+				localStorage.setItem('idnum',id);
+//				alert(json.data[0].img_url);
+//				title.innerHTML = json.data[0].title;
+//				pic.src = json.data[0].img_url;
+//				forward.innerHTML = json.data[0].forward
+				for (i=json.data.length-1;i>=0;i--) {
+						var li = document.createElement('li');
+						
+						li.className = '';
+						li.innerHTML = '<span style="font-size: 16px;line-height: 16px;display:block;padding:10px;text-align:center">'+json.data[i].title+'</span>'	
+									   +'<img class="jump" src="'+json.data[i].img_url+'" width="100%" fid = "'+json.data[i].item_id+'"/>';;
+						//下拉刷新，新纪录插到最前面；
+						table.insertBefore(li, table.firstChild);
+				}
+					var cell = ca.tagName('img')
+					for (a=0;a<cell.length;a++) {
+						cell[a].addEventListener('tap',function(){
+							var id = this.getAttribute("fid");
+							localStorage.setItem('id',id);
+							var nwaiting = plus.nativeUI.showWaiting();  
+							webviewShow = plus.webview.create('detail.html');
+						})
+					}
+					
+			}
 		});
-		</script>
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				setTimeout(function() {
+					
+					var table = document.body.querySelector('.mui-table-view');
+					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+					ca.get({
+			url:'http://v3.wufazhuce.com:8000/api/channel/movie/more/0',
+			data:{state:'index'},
+			succFn:function(data){
+				var json = JSON.parse(data);
+				var two = json.data[0].id;
+				var onenum = localStorage.getItem('one');
+				if (two == onenum) {
+					return false;
+				}
+				for (i=json.data.length-1;i>=0;i--) {
+						var li = document.createElement('li');
+						
+						li.className = '';
+						li.innerHTML = '<span style="font-size: 16px;line-height: 16px;display:block;padding:10px;text-align:center">'+json.data[i].title+'</span>'	
+									   +'<img class="jump" src="'+json.data[i].img_url+'" width="100%" fid = "'+json.data[i].item_id+'"/>';;
+						//下拉刷新，新纪录插到最前面；
+						table.insertBefore(li, table.firstChild);
+				}
+					var cell = ca.tagName('img')
+					for (a=0;a<cell.length;a++) {
+						cell[a].addEventListener('tap',function(){
+							var id = this.getAttribute("fid");
+							  localStorage.setItem('id',id);
+							  ca.newInterface({
+							  	url:'detail.html',
+							  	id:'detail'
+							  })
+						})
+					}
+					
+			}
+		});
+			mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+			mui.toast('刷新成功');	
+				}, 1000);
+		};
 	
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+				setTimeout(function() {
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh(); //参数为true代表没有更多数据了。
+					var table = document.body.querySelector('.mui-table-view');
+					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+					var num =localStorage.getItem('idnum');
+					ca.get({
+						url:'http://v3.wufazhuce.com:8000/api/channel/movie/more/'+num,
+						date:{},
+						succFn:function(data){
+							var json = JSON.parse(data);
+							var id = json.data[9].id;
+							localStorage.setItem('idnum',id);
+//							console.log(id);
+							for (i=0;i<json.data.length;i++) {
+						var div = document.createElement('div');
+						div.className = '';
+						div.innerHTML = '<span style="font-size: 16px;line-height: 16px;display:block;padding:10px;text-align:center">'+json.data[i].title+'</span>'	
+									   +'<img class="jump" src="'+json.data[i].img_url+'" width="100%" fid = "'+json.data[i].item_id+'"/>';;
+						//上拉加载，新纪录插到最前面；
+						table.appendChild(div);
+					}
+				
+					var cell = ca.tagName('img')
+					for (a=0;a<cell.length;a++) {
+						cell[a].addEventListener('tap',function(){
+							var id = this.getAttribute("fid");
+							  localStorage.setItem('id',id);
+							  ca.newInterface({
+							  	url:'detail.html',
+							  	id:'detail'
+							  })
+						});
+					}
+						}
+					});
+					
+				}, 1500);
+			}
+		</script>
+	</body>
+
 </html>
