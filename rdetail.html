@@ -5,35 +5,57 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<link href="css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" type="text/css" href="css/comment.css"/>
-		<script src="js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/comment.css"/>
+		<script src="../js/mui.min.js"></script>
 		<style type="text/css">
 			.mui-content{
 				margin:0 0.5rem;
-			}
-			.commentlist{
-				border-bottom: 1px solid #cec9c9;
 			}
 		</style>
 		<script type="text/javascript">
 			mui.init({
 				swipeBack:true
 				});
+			 var floatw = null;
+		        mui.plusReady(function() {
+		            ws = plus.webview.currentWebview();
+		            floatw = plus.webview.create("list.html", "list", {
+		                background: 'transparent',
+		                zindex: 10,
+		            });
+		        })
+		
+		        // 创建悬浮窗口
+		        function floatWebview() {
+		            if(floatw) { // 避免快速多次点击创建多个窗口
+		                floatw.show("slide-in-bottom");
+		            } else {
+		                floatw = plus.webview.create("list.html", "list", {
+		                    background: 'transparent',
+		                    zindex: 10,
+		                });
+		                floatw.show("slide-in-bottom");
+		            }
+		        }	
 		</script>
 	</head>
+
 	<body>
 		<header class="mui-bar mui-bar-nav">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 		    <h1 class="mui-title" id="tittle"></h1>
 		</header>
 		<div class="mui-content" >
+			<div id="head">
+				
+			</div>
 			<!--<div class="commentlist">
-				<img src="img/logo.png"/ class="commentuser">
+				<img src="../img/logo.png"/ class="commentuser">
 				<span style=" top: 15px; position: relative;color:#86bef8;">作者</span>
 				<span style="position: relative;display: block; ">Aug 23.2017</span>
 			</div>
-			<img src="img/start.png" style="width: 30px;float: right; margin-top: -3.2rem;"/>-->
+			<img src="../img/start.png" style="width: 30px;float: right; margin-top: -3.2rem;"/>-->
 			<h3 id="headtitle"></h3>  <!--标题-->
 			<span id="author"></span>
 		    <div id="rdetail"></div>  <!--内容-->
@@ -43,10 +65,9 @@
 		</div>
 		
 	</body>
-		<script src="js/castapp.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/castapp.js" type="text/javascript" charset="utf-8"></script>
 		<script src="html5plus://ready"></script>
 		<script type="text/javascript">
-			//利用本地存储来传递ID
 			ca.init();
 			var self = plus.webview.currentWebview();
 			var tittle = ca.id('tittle');
@@ -54,6 +75,7 @@
 			var contact = ca.id('rdetail') ;
 			var headtitle = ca.id('headtitle');
 			var bianji = ca.id('bianji');
+			var head = ca.id('head');
 			if (self.id=='bookdid') {
 			var bookid = localStorage.getItem('did');
 				ca.get({
@@ -62,6 +84,13 @@
 					succFn:function(data){
 						var data = data.replace(/style=/g, "")
 						var json =JSON.parse(data);
+						//作者信息
+						head.innerHTML = '<div class="commentlist">'
+										+	'<img src="'+json.data.author[0].web_url+'" class="commentuser">'
+										+	'<span style=" top: 15px; position: relative;color:#86bef8;">'+json.data.author[0].user_name+'</span>'
+										+	'<span style="position: relative;display: block; ">Aug 23.2017</span>'
+										+'</div>'
+										+'<img src="../img/start.png" style="width: 30px;float: right; margin-top: -3.2rem;"/>';
 						tittle.innerHTML = '阅读·短篇';
 						headtitle.innerHTML = json.data.hp_title;
 						author.innerHTML= '作者：'+json.data.author[0].user_name;
@@ -93,11 +122,22 @@
 					succFn:function(data){
 						var data = data.replace(/style=/g, "")
 						var json =JSON.parse(data);
+						head.innerHTML = '<div class="commentlist">'
+										+	'<img src="'+json.data.author.web_url+'" class="commentuser">'
+										+	'<span style=" top: 15px; position: relative;color:#86bef8;">'+json.data.author.user_name+'</span>'
+										+	'<span style="position: relative;display: block; ">Aug 23.2017</span>'
+										+'</div>'
+										+'<img src="../img/list.png" style="width: 30px;float: right; margin-top: -3.2rem;" id="zjlist"/>';
 						tittle.innerHTML = '阅读·连载';
 						headtitle.innerHTML = json.data.title;
 						author.innerHTML= '作者：'+json.data.author.user_name;
 						contact.innerHTML = json.data.content;
-					bianji.innerHTML = json.data.charge_edt+' '+json.data.editor_email;
+						bianji.innerHTML = json.data.charge_edt+' '+json.data.editor_email;
+						var list = ca.id('zjlist');
+						list.addEventListener('tap',function(){
+							floatWebview();
+//							console.log('a')
+						})
 				}
 			});
 				ca.get({
@@ -131,23 +171,23 @@
 					bianji.innerHTML = json.data.charge_edt+' '+json.data.charge_email;
 				}
 			});
-			ca.get({
-				url:'http://v3.wufazhuce.com:8000/api/comment/praise/question/'+bookid+'/0?version=v4.1',
-				date:{state:'index'},
-				succFn:function(data){
-					var json2 = JSON.parse(data);
-					var comment = ca.id('comment');
-					for (var s=0;s<json2.data.data.length;s++) {
-						var tpl = '<div class="commentlist"><ul><img src="'+json2.data.data[s].user.web_url+'" class="commentpic"/>'
-									+'<li>'+json2.data.data[s].user.user_name+'</li>'
-									+'<li>'+json2.data.data[s].created_at.substring(0,16)+'</li></ul>'
-									+'<div style="margin-left: 2.6rem;">'+json2.data.data[s].content+'</div>'
-									+'<div style="border-bottom:1px solid gainsboro;"></div></div>';
-						comment.innerHTML += tpl;	
+				ca.get({
+					url:'http://v3.wufazhuce.com:8000/api/comment/praise/question/'+bookid+'/0?version=v4.1',
+					date:{state:'index'},
+					succFn:function(data){
+						var json2 = JSON.parse(data);
+						var comment = ca.id('comment');
+						for (var s=0;s<json2.data.data.length;s++) {
+							var tpl = '<div class="commentlist"><ul><img src="'+json2.data.data[s].user.web_url+'" class="commentpic"/>'
+							   			+'<li>'+json2.data.data[s].user.user_name+'</li>'
+							   			+'<li>'+json2.data.data[s].created_at.substring(0,16)+'</li></ul>'
+							   			+'<div style="margin-left: 2.6rem;">'+json2.data.data[s].content+'</div>'
+							   			+'<div style="border-bottom:1px solid gainsboro;"></div></div>';
+							comment.innerHTML += tpl;	
+						}
 					}
-				}
-			});
+				});
 			}
-		
+			
 		</script>
 </html>
