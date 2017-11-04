@@ -71,7 +71,6 @@
 				var head = ca.id('head');
 				var time =ca.id('time');
 				time.innerHTML = getCurrentDate(data.data.hp_makettime.substring(0,11).replace(/-/g, "/"));
-//				time.innerHTML = 2017
 				var tpl = '<img src="'+data.data.hp_img_url+'" width=100% display:block; style="object-fit: cover;" data-preview-src="" data-preview-group="1"/>'
 				    	  +'<span style="float: left;color: gray;font-size: 10px;">'+data.data.hp_title+'</span>'
 				    	  +'<span style="float: right;color: gray;font-size: 10px;"><span>'+data.data.hp_author+'</span>'
