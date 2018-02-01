@@ -19,7 +19,7 @@
 https://fir.im/js4r 安卓版可以下载预览<br>
 
 ~~往期目录已经实现，首页左右滑动实现的不够完美，webview，滑动之后会遮盖下面导航栏，待解决！~~<br>
-
+更新一下最新的视频版介绍，优酷直达http://v.youku.com/v_show/id_XMzM3Mjc3OTIyMA==.html
 ![image](https://github.com/yogu2017/one-mui/raw/master/screenshot/1.gif)<br>
 ![image](https://github.com/yogu2017/one-mui/raw/master/screenshot/1.png)
 ![image](https://github.com/yogu2017/one-mui/raw/master/screenshot/2.png)
