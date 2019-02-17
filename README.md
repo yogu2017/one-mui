@@ -17,7 +17,7 @@
 * 电影版快3.5版本的基本报废，故换作类4.0版本界面（未美化）<br>
 *mui版未完结-不会做完全功能，好多暂时无法实现，比如登录等等<br>
 https://fir.im/js4r 安卓版可以下载预览<br>
-
+* api https://github.com/yogu2017/one-mui/wiki/APi
 ~~往期目录已经实现，首页左右滑动实现的不够完美，webview，滑动之后会遮盖下面导航栏，待解决！~~<br>
 更新一下最新的视频版介绍，优酷直达http://v.youku.com/v_show/id_XMzM3Mjc3OTIyMA==.html
 ![image](https://github.com/yogu2017/one-mui/raw/master/screenshot/1.gif)<br>
